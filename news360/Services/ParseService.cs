@@ -9,8 +9,10 @@ namespace news360.Services
 	{
 		public List<Summand> Parse(string equation)
 		{
+			//parse expression on members
 			var summands = ParseEquation(equation);
 
+			//disclose brackets
 			var i = 0;
 			while (i < summands.Count)
 			{
