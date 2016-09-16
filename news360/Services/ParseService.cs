@@ -63,14 +63,13 @@ namespace news360.Services
 
 		protected List<Summand> ParseFormula(string formula)
 		{
-			var split = Extensions.SplitFormula(formula);
-			return split.Select(ParseSummand).ToList();
+			var summands = Extensions.SplitFormula(formula);
+			return summands.Select(ParseSummand).ToList();
 		}
 
 		protected static Regex SummandRegex =new Regex(@"^(?<factor>([+-]?\d+(\.\d+)?)|[+-])?(?<vars>(\w|\(.+?\)){1}(\^\d+)?)+?$");
-
 		protected static Regex VariableRegex = new Regex(@"^(?<var>(\w|\(.+?\))+)(\^(?<pow>\d+))?$");
-		protected static Regex NumberRegex = new Regex(@"^(?<num>([+-]?\d+(\.\d+)?)|[+-])$");
+		protected static Regex NumberRegex = new Regex(@"^(?<num>[+-]?\d+(\.\d+)?)$");
 
 		protected Summand ParseSummand(string str)
 		{

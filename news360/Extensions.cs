@@ -32,7 +32,7 @@ namespace news360
 			return list;
 		}
 
-		public static string ToStringEx<T>(this IEnumerable<T> list, string separator = "", string perfIfNotNull = "")
+		public static string ListToString<T>(this IEnumerable<T> list, string separator = "")
 		{
 			var enumerable = list as T[] ?? list.ToArray();
 			if (list == null || !enumerable.Any())
@@ -40,10 +40,12 @@ namespace news360
 
 			if (separator == null) separator = string.Empty;
 
-			var r =
-				enumerable.Aggregate(new StringBuilder(), (s, i) => s.Append(separator + i)).Remove(0, separator.Length).ToString();
+			var r = enumerable
+				.Aggregate(new StringBuilder(), (s, i) => s.Append(separator + i))
+				.Remove(0, separator.Length)
+				.ToString();
 
-			return string.IsNullOrEmpty(perfIfNotNull) ? r : perfIfNotNull + r;
+			return r;
 		}
 	}
 }

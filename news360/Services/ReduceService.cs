@@ -9,7 +9,7 @@ namespace news360.Services
 		public List<Summand> Reduce(List<Summand> list)
 		{
 			var orderedVarList = list.Select(GetWithOrderedVar);
-			var groups = orderedVarList.GroupBy(x => x.Variables.ToStringEx("|"));
+			var groups = orderedVarList.GroupBy(x => x.Variables.ListToString("|"));
 
 			return groups.Select(ReduceGroup).ToList();
 		}
